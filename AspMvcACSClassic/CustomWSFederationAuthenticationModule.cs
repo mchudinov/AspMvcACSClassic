@@ -2,11 +2,11 @@
 using System.IdentityModel.Services;
 using log4net;
 
-namespace MvcACSClassic
+namespace AspMvcACSClassic
 {
     /// <summary>
     /// Logger for WSFederationAuthenticationModule events
-    /// https://msdn.microsoft.com/en-us/library/system.identitymodel.services.wsfederationauthenticationmodule%28v=vs.110%29.aspx
+    /// https://msdn.microsoft.com/en-us/library/system.identitymodel.services.wsfederationauthenticationmodule
     /// </summary>
     sealed class CustomWSFederationAuthenticationModule : WSFederationAuthenticationModule
     {

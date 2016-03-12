@@ -2,7 +2,7 @@
 using System.IdentityModel.Services;
 using System.Web.Mvc;
 
-namespace MvcACSClassic.Controllers
+namespace AspMvcACSClassic.Controllers
 {
     public class AccountController : Controller
     {
@@ -17,8 +17,8 @@ namespace MvcACSClassic.Controllers
         public void SignOut()
         {
             string callbackUrl = Url.Action("SignOutCallback", "Account", routeValues: null, protocol: Request.Url.Scheme);
-            //FederatedAuthentication.WSFederationAuthenticationModule.SignOut(callbackUrl);
-            WSFederationAuthenticationModule.FederatedSignOut(new Uri(FederatedAuthentication.WSFederationAuthenticationModule.Issuer), new Uri(callbackUrl));
+            FederatedAuthentication.WSFederationAuthenticationModule.SignOut(callbackUrl);
+            //CustomWSFederationAuthenticationModule.FederatedSignOut(new Uri(FederatedAuthentication.WSFederationAuthenticationModule.Issuer), new Uri(callbackUrl));
         }
 
         public ActionResult SignOutCallback()

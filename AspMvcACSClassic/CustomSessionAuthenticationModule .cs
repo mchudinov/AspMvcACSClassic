@@ -2,11 +2,11 @@
 using System.IdentityModel.Services;
 using log4net;
 
-namespace MvcACSClassic
+namespace AspMvcACSClassic
 {
     /// <summary>
     /// Logger for SessionAuthenticationModule events
-    /// https://msdn.microsoft.com/en-us/library/system.identitymodel.services.sessionauthenticationmodule%28v=vs.110%29.aspx
+    /// https://msdn.microsoft.com/en-us/library/system.identitymodel.services.sessionauthenticationmodule
     /// </summary>
     sealed class CustomSessionAuthenticationModule : SessionAuthenticationModule
     {

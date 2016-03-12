@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Web.Mvc;
 
-namespace MvcACSClassic.Controllers
+namespace AspMvcACSClassic.Controllers
 {
     public class HomeController : Controller
     {
