@@ -17,8 +17,8 @@ namespace AspMvcACSClassic.Controllers
         public void SignOut()
         {
             string callbackUrl = Url.Action("SignOutCallback", "Account", routeValues: null, protocol: Request.Url.Scheme);
-            FederatedAuthentication.WSFederationAuthenticationModule.SignOut();
-            CustomWSFederationAuthenticationModule.FederatedSignOut(new Uri(FederatedAuthentication.WSFederationAuthenticationModule.Issuer), new Uri(callbackUrl));
+            WSFederationAuthenticationModule.FederatedSignOut(new Uri(FederatedAuthentication.WSFederationAuthenticationModule.Issuer), new Uri(callbackUrl));
+            FederatedAuthentication.WSFederationAuthenticationModule.SignOut(callbackUrl);
         }
 
         public ActionResult SignOutCallback()

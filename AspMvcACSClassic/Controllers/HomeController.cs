@@ -3,6 +3,7 @@ using System.Web.Mvc;
 
 namespace AspMvcACSClassic.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Claims() 
