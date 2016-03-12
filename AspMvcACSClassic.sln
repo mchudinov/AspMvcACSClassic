@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcACSClassic", "MvcACSClassic\MvcACSClassic.csproj", "{75770206-F103-4C2E-A798-0B74C55E8DC8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspMvcACSClassic", "AspMvcACSClassic\AspMvcACSClassic.csproj", "{75770206-F103-4C2E-A798-0B74C55E8DC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
