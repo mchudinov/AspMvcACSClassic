@@ -1,17 +1,15 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IdentityModel.Services;
-using log4net;
 
 namespace AspMvcACSClassic
 {
     /// <summary>
-    /// Logger for WSFederationAuthenticationModule events
+    /// Capture WSFederationAuthenticationModule events
     /// https://msdn.microsoft.com/en-us/library/system.identitymodel.services.wsfederationauthenticationmodule
     /// </summary>
     sealed class CustomWSFederationAuthenticationModule : WSFederationAuthenticationModule
     {
-        static readonly ILog _log = LogManager.GetLogger(typeof(WSFederationAuthenticationModule));
-
         public CustomWSFederationAuthenticationModule()
         {
             base.AuthorizationFailed += CustomAuthenticationModule_AuthorizationFailed;
@@ -29,62 +27,62 @@ namespace AspMvcACSClassic
         private void CustomAuthenticationModule_SignOutError(object sender, ErrorEventArgs e)
         {
             var auth = (CustomWSFederationAuthenticationModule)sender;
-            _log.Warn("SignOutError. Message: " + e.Exception.Message);
+            Debug.WriteLine("SignOutError. Message: " + e.Exception.Message);
         }
 
         private void CustomAuthenticationModule_SigningOut(object sender, SigningOutEventArgs e)
         {
             var auth = (CustomWSFederationAuthenticationModule)sender;
-            _log.Info("SigningOut");
+            Debug.WriteLine("SigningOut");
         }
 
         private void CustomAuthenticationModule_SignInError(object sender, ErrorEventArgs e)
         {
             var auth = (CustomWSFederationAuthenticationModule)sender;
-            _log.Warn("SignInError. Message: " + e.Exception.Message);
+            Debug.WriteLine("SignInError. Message: " + e.Exception.Message);
         }
 
         private void CustomAuthenticationModule_SignedOut(object sender, EventArgs e)
         {
             var auth = (CustomWSFederationAuthenticationModule)sender;
-            _log.Info("SignedOut");
+            Debug.WriteLine("SignedOut");
         }
 
         private void CustomAuthenticationModule_SignedIn(object sender, EventArgs e)
         {
             var auth = (CustomWSFederationAuthenticationModule)sender;
-            _log.Info("SignedIn");
+            Debug.WriteLine("SignedIn");
         }
 
         private void CustomAuthenticationModule_SessionSecurityTokenCreated(object sender, SessionSecurityTokenCreatedEventArgs e)
         {
             var auth = (CustomWSFederationAuthenticationModule)sender;
             var token = (System.IdentityModel.Tokens.SessionSecurityToken) e.SessionToken;
-            _log.Info("SessionSecurityTokenCreated. TokenId:" + token.Id + " KeyExpirationTime:" + token.KeyExpirationTime);
+            Debug.WriteLine("SessionSecurityTokenCreated. TokenId:" + token.Id + " KeyExpirationTime:" + token.KeyExpirationTime);
         }
 
         private void CustomAuthenticationModule_SecurityTokenValidated(object sender, SecurityTokenValidatedEventArgs e)
         {
             var auth = (CustomWSFederationAuthenticationModule)sender;
-            _log.Info("SecurityTokenValidated");
+            Debug.WriteLine("SecurityTokenValidated");
         }
 
         private void CustomAuthenticationModule_RedirectingToIdentityProvider(object sender, RedirectingToIdentityProviderEventArgs e)
         {
             var auth = (CustomWSFederationAuthenticationModule)sender;
-            _log.Info("RedirectingToIdentityProvider. SignInRequestMessage:" + e.SignInRequestMessage);
+            Debug.WriteLine("RedirectingToIdentityProvider. SignInRequestMessage:" + e.SignInRequestMessage);
         }
 
         private void CustomAuthenticationModule_AuthorizationFailed(object sender, AuthorizationFailedEventArgs e)
         {
             var auth = (CustomWSFederationAuthenticationModule) sender;
-            _log.Warn("AuthorizationFailed. RedirectToIdentityProvider:" + e.RedirectToIdentityProvider);
+            Debug.WriteLine("AuthorizationFailed. RedirectToIdentityProvider:" + e.RedirectToIdentityProvider);
         }
 
         public void CustomAuthenticationModule_SecurityTokenReceived(object sender, SecurityTokenReceivedEventArgs e)
         {
             var auth = (CustomWSFederationAuthenticationModule)sender;
-            _log.Info("SecurityTokenReceived. SecurityToken:" + e.SecurityToken + " SignInContext:" + e.SignInContext);
+            Debug.WriteLine("SecurityTokenReceived. SecurityToken:" + e.SecurityToken + " SignInContext:" + e.SignInContext);
         }
     }
 }
