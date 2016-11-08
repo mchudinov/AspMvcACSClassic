@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace AspMvcACSClassic.Controllers
 {
@@ -9,7 +8,7 @@ namespace AspMvcACSClassic.Controllers
         public ActionResult Claims() 
         { 
             ViewBag.Message = "Your claims page";
-            ViewBag.ClaimsIdentity = Thread.CurrentPrincipal.Identity;
+            ViewBag.ClaimsIdentity = System.Web.HttpContext.Current.User.Identity;
             return View();
         }
     }

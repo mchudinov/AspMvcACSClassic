@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IdentityModel.Services;
+using System.IdentityModel.Tokens;
+using System.IO;
+using System.Linq;
 using System.Security.Claims;
-using System.Threading;
+using System.Text;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Xml;
 
 namespace AspMvcACSClassic
 {
@@ -18,10 +23,22 @@ namespace AspMvcACSClassic
 
         protected void Session_Start(object sender, EventArgs e)
         {
-            var principal = (ClaimsPrincipal)Thread.CurrentPrincipal;
-            var claims = ((ClaimsPrincipal)Thread.CurrentPrincipal).Claims;
-            var identity = Thread.CurrentPrincipal.Identity;
+            var principal = (ClaimsPrincipal)System.Web.HttpContext.Current.User;
+            var bootstrapContext = (BootstrapContext)principal.Identities.First().BootstrapContext;            
+            var claims = principal.Claims;
+            var token = GetToken(bootstrapContext);
+            var identity = principal.Identity;
             Debug.WriteLine("Session_Start. Identity name:" + identity.Name + " IsAuthenticated:" + identity.IsAuthenticated);
         }
+
+        private static string GetToken(BootstrapContext bootstrapContext)
+        {
+            var builder = new StringBuilder();
+            using (var writer = XmlWriter.Create(builder))
+            {
+                new Saml2SecurityTokenHandler(new SamlSecurityTokenRequirement()).WriteToken(writer, bootstrapContext.SecurityToken);
+            }
+            return builder.ToString();            
+        }        
     }
 }
